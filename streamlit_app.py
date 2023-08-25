@@ -24,5 +24,8 @@ s.dataframe(fruits_to_show)
 
 s.header('Fruityvice Fruit Advice!')
 
-fruityvice_response = r.get("https://fruityvice.com/api/fruit/watermelon")
-s.text(fruityvice_response.json())
+fruityvice_response = r.get("https://fruityvice.com/api/fruit/" + "watermelon")
+#s.text(fruityvice_response.json())
+
+fruityvice_norm = p.json_normalize(fruityvice_response.json())
+s.dataframe(fruityvice_norm)
