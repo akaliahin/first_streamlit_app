@@ -1,3 +1,2 @@
 # requirements.txt
-urllib3 == 1.26.14
-snowflake-connector-python
+snowflake-connector-python==2.7.9
