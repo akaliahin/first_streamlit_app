@@ -2,7 +2,10 @@ import streamlit as s
 
 s.title('New Healthy Diner')
 
-s.header('Breakfast Menu')
-s.text('Omega 3 & Blueberry Oatmeal')
-s.text('Kale, Spinach & Rocket Smoothie')
-s.text('Hard-Boiled Free-Range Egg')
+s.header('Breakfast Favorites')
+s.text('🥣 Omega 3 & Blueberry Oatmeal')
+s.text('🥗 Kale, Spinach & Rocket Smoothie')
+s.text('🐔 Hard-Boiled Free-Range Egg')
+s.text('🥑🍞 Avocado Toast')
+
+streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
