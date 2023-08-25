@@ -27,14 +27,21 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 s.dataframe(fruits_to_show)
 
 s.header('Fruityvice Fruit Advice!')
-fruit_choice = s.text_input("What fruit you'd like to have info about?", "Kiwi")
-s.write('The user entered ', fruit_choice)
+try:
+  fruit_choice = s.text_input("What fruit you'd like to have info about?")
+  if not fruit_choice:
+    s.error("Please select a fruit to get iniformation")
+  else:
+    fruityvice_response = r.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+    fruityvice_norm = p.json_normalize(fruityvice_response.json())
+    s.dataframe(fruityvice_norm)
+except URLError as e:
+  s.error()
 
-fruityvice_response = r.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+
 #s.text(fruityvice_response.json())
 
-fruityvice_norm = p.json_normalize(fruityvice_response.json())
-s.dataframe(fruityvice_norm)
+
 
 s.stop()
 
