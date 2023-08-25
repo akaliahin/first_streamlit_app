@@ -26,15 +26,19 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 # Display the table on the page.
 s.dataframe(fruits_to_show)
 
+def get_fruityvice_data (fruit_choice):
+  fruityvice_response = r.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+  fruityvice_norm = p.json_normalize(fruityvice_response.json())
+  return fruityvice_norm
+
 s.header('Fruityvice Fruit Advice!')
 try:
   fruit_choice = s.text_input("What fruit you'd like to have info about?")
   if not fruit_choice:
     s.error("Please select a fruit to get iniformation")
   else:
-    fruityvice_response = r.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-    fruityvice_norm = p.json_normalize(fruityvice_response.json())
-    s.dataframe(fruityvice_norm)
+    back_from_fn = get_fruityvice_data(fruit_choice)
+    s.dataframe(back_from_fn)
 except URLError as e:
   s.error()
 
