@@ -1,7 +1,7 @@
 import streamlit as s
 import pandas as p
 import requests as r
-import snowflake.connector
+import snowflake.connector as sf
 
 
 
@@ -37,9 +37,9 @@ s.dataframe(fruityvice_norm)
 
 
 
-my_cnx = snowflake.connector.connect(**s.secrets["snowflake"])
+my_cnx = sf.connect(**s.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 my_data_row = my_cur.fetchone()
-streamlit.text("Hello from Snowflake:")
-streamlit.text(my_data_row)
+s.text("Hello from Snowflake:")
+s.text(my_data_row)
