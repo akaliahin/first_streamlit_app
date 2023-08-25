@@ -55,6 +55,7 @@ if s.button('Get Fruit Load List'):
   my_cnx = sf.connect(**s.secrets["snowflake"])
   my_data_row = get_fruit_load_list()
   s.dataframe(my_data_row)
+  my_cnx.close()
 
 
 def insert_row_snowflake(new_fruit):
@@ -67,4 +68,5 @@ fruit_choice = s.text_input("What would you like to add?")
 if s.button('Add a Fruit to the List'):
   my_cnx = sf.connect(**s.secrets["snowflake"])
   back_frm_fn = insert_row_snowflake(fruit_choice)
+  my_cnx.close()
   s.text(back_frm_fn)
