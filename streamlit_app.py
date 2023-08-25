@@ -45,16 +45,18 @@ except URLError as e:
 
 #s.text(fruityvice_response.json())
 
-
+s.text("The fruit load list contains:")
+def get_fruit_load_list():
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("SELECT * FROM fruit_load_list")
+    return my_cur.fetchall()
+    
+if s.button('Get Fruit Load List'):
+  my_cnx = sf.connect(**s.secrets["snowflake"])
+  my_data_row = get_fruit_load_list()
+  s.dataframe(my_data_row)
 
 s.stop()
-
-my_cnx = sf.connect(**s.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("SELECT * FROM fruit_load_list")
-my_data_row = my_cur.fetchall()
-s.text("The fruit load list contains:")
-s.dataframe(my_data_row)
 
 fruit_choice = s.text_input("What would you like to add?", "jackfruit")
 s.write('Thanks for adding ', fruit_choice)
